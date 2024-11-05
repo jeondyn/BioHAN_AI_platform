@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - BioHAN AI Platform</title>
+    <style>
+        /* 전체 스타일 */
+        body, html {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* 상단 메뉴바 */
+        .navbar {
+            width: 100%;
+            background-color: #4d4d4d;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-logo {
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            margin-top: 100px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-field {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 버튼 스타일 */
+        .button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #cccccc;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 상단 네비게이션 바 -->
+    <div class="navbar">
+        <div class="navbar-logo">BioHAN AI Platform</div>
+    </div>
+
+    <!-- 로그인 폼 -->
+    <div class="container">
+        <h1 class="title">로그인</h1>
+        <div class="input-container">
+            <input type="text" id="loginUserId" class="input-field" placeholder="ID">
+            <input type="password" id="loginPassword" class="input-field" placeholder="PW">
+        </div>
+        <button class="button" onclick="login()">로그인</button>
+        <button class="button" onclick="goBack()">뒤로가기</button>
+    </div>
+
+    <script>
+        function login() {
+            const loginUserId = document.getElementById('loginUserId').value;
+            const loginPassword = document.getElementById('loginPassword').value;
+
+            // 저장된 사용자 정보 불러오기
+            const storedUserId = localStorage.getItem('userId');
+            const storedPassword = localStorage.getItem('password');
+
+            if (loginUserId === storedUserId && loginPassword === storedPassword) {
+                alert('로그인 성공!');
+                // 로그인 성공 시 main.html로 이동
+                window.location.href = 'main.html';
+            } else {
+                alert('ID 또는 비밀번호가 올바르지 않습니다.');
+            }
+        }
+
+        function goBack() {
+            window.location.href = 'index.html'; // index 페이지로 이동
+        }
+    </script>
+
+</body>
+</html>
+
+

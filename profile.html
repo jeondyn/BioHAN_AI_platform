@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 정보 - BioHAN AI Platform</title>
+    <style>
+        /* 전체 스타일 */
+        body, html {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding-top: 60px; /* 네비게이션 바 높이만큼 여백 추가 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* 상단 메뉴바 */
+        .navbar {
+            width: 100%;
+            background-color: #4d4d4d;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            justify-content: space-between;
+        }
+
+        .navbar-logo {
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        /* 버튼 스타일 */
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .button-red {
+            background-color: #f44336;
+        }
+
+        /* 뒤로가기 버튼 */
+        .back-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #4d4d4d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 상단 네비게이션 바 -->
+    <div class="navbar">
+        <div class="navbar-logo">BioHAN AI Platform</div>
+    </div>
+
+    <!-- 내 정보 화면 -->
+    <div class="container">
+        <h1 class="title">내 정보</h1>
+        <div class="info">이름: <span id="username"></span></div>
+        <div class="info">E-mail: <span id="email"></span></div>
+        <div class="info">ID: <span id="userId"></span></div>
+        <div class="info">PW: <span id="password"></span></div>
+
+        <button class="button button-red" onclick="unsubscribe()">회원 탈퇴</button>
+        <button class="button" onclick="upgradeSubscription()">구독 서비스 업그레이드</button>
+    </div>
+
+    <!-- 뒤로가기 버튼 -->
+    <button class="back-button" onclick="goBack()">뒤로가기</button>
+
+    <script>
+        // 사용자 정보 표시
+        document.getElementById("username").innerText = localStorage.getItem("username") || "정보 없음";
+        document.getElementById("email").innerText = localStorage.getItem("email") || "정보 없음";
+        document.getElementById("userId").innerText = localStorage.getItem("userId") || "정보 없음";
+        document.getElementById("password").innerText = localStorage.getItem("password") || "정보 없음";
+
+        function unsubscribe() {
+            alert("회원 탈퇴가 완료되었습니다.");
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+
+        function upgradeSubscription() {
+            alert("구독 서비스는 준비 중입니다...");
+        }
+
+        // 뒤로가기 버튼 기능
+        function goBack() {
+            window.location.href = 'main.html'; // 메인 페이지로 이동
+        }
+    </script>
+
+</body>
+</html>

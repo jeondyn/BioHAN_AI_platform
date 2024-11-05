@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - BioHAN AI Platform</title>
+    <style>
+        /* 전체 스타일 */
+        body, html {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* 상단 메뉴바 */
+        .navbar {
+            width: 100%;
+            background-color: #4d4d4d;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-logo {
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            margin-top: 100px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-field {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 버튼 스타일 */
+        .button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #cccccc;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 상단 네비게이션 바 -->
+    <div class="navbar">
+        <div class="navbar-logo">BioHAN AI Platform</div>
+    </div>
+
+    <!-- 회원가입 폼 -->
+    <div class="container">
+        <h1 class="title">회원 가입</h1>
+        <div class="input-container">
+            <input type="text" id="username" class="input-field" placeholder="사용자 이름">
+            <input type="email" id="email" class="input-field" placeholder="이메일">
+            <input type="text" id="userId" class="input-field" placeholder="ID">
+            <input type="password" id="password" class="input-field" placeholder="PW">
+        </div>
+        <button class="button" onclick="register()">회원 가입</button>
+        <button class="button" onclick="goBack()">뒤로가기</button>
+    </div>
+
+    <script>
+        function register() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+
+            if (username && email && userId && password) {
+                // 사용자 정보를 로컬 저장소에 저장
+                localStorage.setItem('username', username);
+                localStorage.setItem('email', email);
+                localStorage.setItem('userId', userId);
+                localStorage.setItem('password', password);
+                alert('회원 가입이 완료되었습니다!');
+                goBack();
+            } else {
+                alert('모든 필드를 입력해 주세요.');
+            }
+        }
+
+        function goBack() {
+            window.location.href = 'index.html'; // index 페이지로 이동
+        }
+    </script>
+
+</body>
+</html>

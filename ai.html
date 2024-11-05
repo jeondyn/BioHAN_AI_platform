@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioHAN AI Platform - Main</title>
+    <style>
+        /* 기본 스타일 */
+        body, html {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #4d4d4d;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-logo {
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+        }
+
+        .centered-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .highlight {
+            color: #007BA7;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .search-box, .chatgpt-search-box {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #333;
+            border-radius: 25px;
+            text-align: center;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* iframe 표시할 컨테이너 */
+        #iframe-container {
+            display: none;
+            width: 200%; /* 가로를 1.5배 넓게 설정 */
+            max-width: 900px; /* 최대 너비 설정 */
+            height: 300px;
+            margin-bottom: 20px;
+            border: 2px solid #333;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .info-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onclick="hideIframe(event)">
+
+    <!-- 네비게이션 바 -->
+    <div class="navbar">
+        <div class="navbar-logo">유쾌한 반란</div>
+    </div>
+
+    <!-- 중앙에 위치할 메인 콘텐츠 -->
+    <div class="centered-container" id="main-content">
+        <h1 class="title"><span class="highlight">BioHAN</span> AI platform</h1>
+        <p class="subtitle">원하는 한의약을 검색하세요. 한의약계의 챗GPT</p>
+
+        <!-- iframe을 삽입할 컨테이너 -->
+        <div id="iframe-container">
+            <iframe src="https://copilotstudio.microsoft.com/environments/Default-1b1557a9-3c86-4698-adff-593810723c0d/bots/cr6c6_QACopilot1/webchat?__version__=2" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+        </div>
+
+        <!-- 검색창 -->
+        <input type="text" class="search-box" id="searchInput" placeholder="검색어를 입력하세요" onclick="showIframe(event)">
+
+        <!-- 챗GPT 검색창 -->
+        <div class="chatgpt-search-box" onclick="goToChatGPT()">챗GPT 검색창</div>
+    </div>
+
+    <button class="back-button" onclick="goBack()">뒤로 가기</button>
+    <button class="info-button" onclick="goToInfo()">내 정보 확인하기</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function showIframe(event) {
+            event.stopPropagation(); // 클릭 이벤트가 body로 전파되지 않게 함
+            document.getElementById("iframe-container").style.display = "block";
+            document.getElementById("searchInput").style.display = "none";
+        }
+
+        function hideIframe(event) {
+            // iframe-container를 제외한 다른 곳 클릭 시 원래 상태로 복귀
+            const iframeContainer = document.getElementById("iframe-container");
+            const searchInput = document.getElementById("searchInput");
+            if (iframeContainer.style.display === "block" && !iframeContainer.contains(event.target)) {
+                iframeContainer.style.display = "none";
+                searchInput.style.display = "block";
+            }
+        }
+
+        function goToChatGPT() {
+            window.open('https://chatgpt.com/?oai-dm=1', '_blank'); // 새 창으로 열기
+        }
+
+        function goToInfo() {
+            window.location.href = 'profile.html';
+        }
+    </script>
+
+</body>
+</html>
